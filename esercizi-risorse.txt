@@ -1,1 +1,1 @@
-
+1) Il sistema è in deadlock, sono coinvolti P4, P5, P7, R3, R4, R5.
