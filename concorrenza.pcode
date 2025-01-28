@@ -1,0 +1,446 @@
+Process A {
+    Istr_A1;
+    send(B);
+    receive(B);
+    Istr_A2;
+    send(B);
+    receive(B);
+    Istr_A3;
+    Istr_A4;
+    send(B);
+}
+    
+Process B {
+    receive(A);
+    Istr_B1;
+    send(A);
+    Istr_B2;
+    send(A);
+    receive(A);
+    Istr_B3;
+    receive(A);
+    Istr_B4;
+}
+        
+
+void inizializzazione() {
+    N_auto = 0;
+    In_coda_SN = 0;
+    In_coda_NS = 0;
+    Dir = NS;
+}
+
+void entra_ponte_SN() {
+    boolean entrato;
+    entrato = false;
+
+    while (not(entrato)) {
+        if (Dir == NS || N_auto >= MAX) {
+            In_coda_NS++;
+            coda_SN.wait();
+            In_coda_NS--;
+        } else {
+            N_auto++;
+            entrato = true;
+        }
+    }
+}
+
+void esci_ponte_SN() {
+    N_auto--;
+    if (N_auto == 0) {
+        if (In_coda_NS > 0) {
+            Dir = NS;
+            coda_NS.signal();
+        } else {
+            coda_SN.signal();
+        }
+    }
+}
+
+void entra_ponte_NS() {
+    boolean entrato;
+    entrato = false;
+
+    while (not(entrato)) {
+        if (Dir == SN || N_auto >= MAX) {
+            In_coda_NS++;
+            coda_NS.wait();
+            In_coda_NS--;
+        } else {
+            N_auto++;
+            entrato = true;
+        }
+    }
+}
+
+void esci_ponte_NS() {
+    N_auto--;
+    If (N_auto == 0) {
+        if (In_coda_SN > 0) {
+            Dir = SN;
+            coda_NS.signal();
+        } else {
+            coda_SN.signal();
+        }
+    }
+}
+
+Process A {
+    V(SemB);
+    V(SemC);
+    P(SemA);
+    P(mutex);
+    Print(x);
+    Print(y);
+    V(SemC);
+}
+
+Process B {
+    P(SemB);    
+    y= y*2;
+    z= x + y;
+    V(SemA);
+}
+
+Process C {
+    P(SemC);
+    y = y * x;
+    V(mutex);
+    P(SemC);
+    Print(z);
+}
+
+Una sezione critica è una parte di programma che usa una o più risorse condivise.
+
+void prendi_pasticcino {
+    if (pasticcini_sul_bancone==0) {
+        clienti_in_attesa++;
+        pasticcere.signal();
+        cliente.wait();
+    } else {
+        pasticcini_sul_balcone--;
+}
+
+void prepara_pasticcini {
+    pasticcini_sul_bancone = N;
+    while (clienti_in_attesa > 0) {
+        pasticcini_sul_balcone = N;
+        cliente.signal();
+        pasticcere.wait();
+    }
+}
+
+1) y = 0
+2) x = 2
+3) z = 4
+
+void inizializzazione() {
+    persone_in_bagno = 0
+    uomini_in_attesa = 0
+    donne_in_attesa = 0
+}
+    
+
+void donna_entra_bagno() {
+    boolean entrata;
+    entrata=false;
+
+    while (not(entrata)) {
+        if (tipo == uomini || persone_in_bagno >= MAX && persone_in_bagno > 0) {
+            donne_in_attesa++;
+            donne.wait();
+            donne_in_attesa--;
+        } else {
+            tipo = donne;
+            persone_in_bagno++;
+            entrata = true;
+        }
+    }
+}
+
+void donna_esce_bagno() {
+    persone_in_bagno--;
+    if (persone_in_bagno == 0) {
+        tipo = uomini;
+        uomini.signal();
+    }
+}
+
+void uomo_entra_bagno(){
+    boolean entrato;
+    entrato=false;
+    while (not(entrato)) {
+        if (tipo == donne || persone_in_bagno >= MAX && persone_in_bagno > 0) {
+            uomini_in_attesa++;
+            uomini.wait();
+            uomini_in_attesa--;
+        } else {
+            tipo = uomini;
+            persone_in_bagno++;
+            entrato = true;
+        }
+    }
+}
+
+void uomo_esce_bagno() {
+    persone_in_bagno--;
+    If (persone_in_bagno == 0) {
+        tipo = donne;
+        donne.signal();
+    }
+}
+
+Process A {
+    P(SemA);
+    y= y*2;
+    z= x + y;
+    V(SemB);
+}
+
+Process B {
+    V(SemA);
+    V(SemC);
+    P(SemB);
+    P(mutex);
+    Print(x);
+    Print(y);
+    V(SemC);
+}
+
+Process C {
+    P(SemC);
+    y = y * x;
+    V(mutex);
+    P(SemC);
+    Print(z);
+}
+
+Process A {
+    while (true) {
+        print(“A”);
+        V(SemB);
+        P(SemA);
+        print(“A”);
+        V(SemC);
+        P(SemA):
+        print(“A”);
+        V(SemB);
+        P(SemA);
+    }
+}
+
+Process B {
+    while (true) {
+        P(SemB);
+        print(“B”);
+        V(SemA);
+    }
+}
+
+Process C {
+    while (true) {
+        P(SemC);
+        print(“C”);
+        V(SemA);
+    }
+}
+
+"Un paradigma per la sincronizzazione che prevede due operazioni: V (per inviare un segnale) e P (per attendere un segnale)."
+
+Process A {
+    Istr_A1;
+    asend(B);
+    sreceive(B);
+    Istr_A2;
+    Istr_A3;
+    asend(B);
+    sreceive(B);
+    Istr_A4;
+}
+
+Process B {
+    sreceive(A);
+    Istr_B1;
+    asend(A);
+    Istr_B2;
+    sreceive(A);
+    Istr_B3;
+    asend(A);
+    Istr_B4;
+}
+
+void inizializzazione() {
+    buffet_caldo = M1;
+    buffet_freddo = M2;
+    invitati_in_attesa_buffet_caldo = 0;
+    invitati_in_attesa_buffet_freddo = 0;
+}
+
+void prendi_porzione_calda {
+    boolean servito = false;
+    while (!servito) {
+        if (buffet_caldo > 0) {
+            buffet_caldo--;
+            servito = true;
+        } else {
+            invitati_in_attesa_buffet_caldo++;
+            cameriere_buffet_caldo.signal();
+            invitati_buffet_caldo.wait();
+            invitati_in_attesa_buffet_caldo--;
+        }
+    }
+}
+
+void prendi_porzione_fredda() {
+    boolean servito = false;
+    while (!servito) {
+        if (buffet_freddo > 0) {
+            buffet_freddo--;
+            servito = true;
+        } else {
+            invitati_in_attesa_buffet_freddo++;
+            cameriere_buffet_freddo.signal();
+            invitati_buffet_freddo.wait();
+            invitati_in_attesa_buffet_freddo--;
+        }
+    }
+}
+
+Process A {
+    V(SemC);
+    V(SemB);
+    P(SemA);
+    P(mutex);
+    z = 2 + x;
+    x = x + z;
+    Print(x);
+    V(SemC);
+    P(SemB);
+}
+
+Process B {
+    P(SemB);
+    x = (x * y) + z;
+    V(SemA);
+    Print(y);
+}
+
+Process C {
+    P(SemC);
+    y = z - (x * 2);
+    V(mutex);
+    P(SemC);
+    Print(z);
+}
+
+"Sia R una risorsa, P1, P2, P3 tre processi che accedono periodicamente a R, se P1 e P2 si alternano nell' uso della risorsa, P3 non può accedervi ed è in starvation."
+
+void prendi_pala (int i) {
+    stato[i] == aspetta_pala
+    verifica(i);
+    if (stato[i] != spala) {
+        spalatori_in_attesa++;
+        spalatori.wait();
+        spalatori_in_attesa--;
+    }
+}
+
+void verifica (int i) {
+    if (pale_libere > 0) {
+        stato[i] = spala;
+        pale_libere--;
+    }
+}
+
+void posa(int i) {
+    stato[i] = beve_caffè;
+    pale_libere++;
+    spalatori.signal();
+}
+
+1) y = 3;
+2) z = 4;
+3) x = 7;
+4) y = 4;
+
+Process A {
+    while (true) {
+        print(“C”);
+        V(SemB);
+        P(SemA);
+        print(“A”);
+        V(SemC);
+        P(SemA);
+    }
+}
+
+Process B {
+    while (true) {
+        P(SemB);
+        print(“I”);
+        V(SemA);
+    }
+}
+
+Process C {
+    while (true) {
+        P(SemC);
+        print(“O”);
+        V(SemA);
+    }
+}
+
+Process A {
+    while (true) {
+        print(“K”);
+        V(SemB);
+        P(SemA);
+        V(SemC);
+        P(SemA);
+    }
+}
+
+Process B {
+    while (true) {
+        P(SemB);
+        print(“I”);
+        V(SemC);
+    }
+}
+
+Process C {
+    while (true) {
+        P(SemC);
+        print(“S”);
+        V(SemA);
+    }
+}
+
+Process A {
+    while (true) {
+        print(“K”);
+        asend(M, B);
+        sreceive(M, C);
+        asend(M, B);
+        areceive(M, C);
+    }
+}
+
+Process B {
+    while (true) {
+        sreceive(M, A);
+        print(“I”);
+        asend(M, C);
+        srecevie(M, A);
+        asend(M, C);
+    }
+}
+
+Process C {
+    while (true) {
+        sreceive(M, B);
+        print(“S”);
+        asend(M, A);
+    }
+}
