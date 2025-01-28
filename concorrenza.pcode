@@ -1,3 +1,4 @@
+Esercizio 1:
 Process A {
     Istr_A1;
     send(B);
@@ -22,7 +23,7 @@ Process B {
     Istr_B4;
 }
         
-
+Esercizio 2:
 void inizializzazione() {
     N_auto = 0;
     In_coda_SN = 0;
@@ -86,6 +87,7 @@ void esci_ponte_NS() {
     }
 }
 
+Esercizio 3:
 Process A {
     V(SemB);
     V(SemC);
@@ -111,8 +113,10 @@ Process C {
     Print(z);
 }
 
+Esercizio 4:
 Una sezione critica è una parte di programma che usa una o più risorse condivise.
 
+Esercizio 5:
 void prendi_pasticcino {
     if (pasticcini_sul_bancone==0) {
         clienti_in_attesa++;
@@ -131,10 +135,12 @@ void prepara_pasticcini {
     }
 }
 
+Esercizio 6:
 1) y = 0
 2) x = 2
 3) z = 4
 
+Esercizio 6:
 void inizializzazione() {
     persone_in_bagno = 0
     uomini_in_attesa = 0
@@ -191,6 +197,7 @@ void uomo_esce_bagno() {
     }
 }
 
+Esercizio 7:
 Process A {
     P(SemA);
     y= y*2;
@@ -216,6 +223,7 @@ Process C {
     Print(z);
 }
 
+Esercizio 8:
 Process A {
     while (true) {
         print(“A”);
@@ -246,8 +254,10 @@ Process C {
     }
 }
 
+Esercizio 9:
 "Un paradigma per la sincronizzazione che prevede due operazioni: V (per inviare un segnale) e P (per attendere un segnale)."
 
+Esercizio 10:
 Process A {
     Istr_A1;
     asend(B);
@@ -270,6 +280,7 @@ Process B {
     Istr_B4;
 }
 
+Esercizio 11:
 void inizializzazione() {
     buffet_caldo = M1;
     buffet_freddo = M2;
@@ -307,6 +318,7 @@ void prendi_porzione_fredda() {
     }
 }
 
+Esercizio 12:
 Process A {
     V(SemC);
     V(SemB);
@@ -334,8 +346,10 @@ Process C {
     Print(z);
 }
 
+Esercizio 13:
 "Sia R una risorsa, P1, P2, P3 tre processi che accedono periodicamente a R, se P1 e P2 si alternano nell' uso della risorsa, P3 non può accedervi ed è in starvation."
 
+Esercizio 14:
 void prendi_pala (int i) {
     stato[i] == aspetta_pala
     verifica(i);
@@ -359,11 +373,13 @@ void posa(int i) {
     spalatori.signal();
 }
 
+Esercizio 15:
 1) y = 3;
 2) z = 4;
 3) x = 7;
 4) y = 4;
 
+Esercizio 16:
 Process A {
     while (true) {
         print(“C”);
@@ -391,6 +407,7 @@ Process C {
     }
 }
 
+Esercizio 17:
 Process A {
     while (true) {
         print(“K”);
@@ -417,6 +434,7 @@ Process C {
     }
 }
 
+Esercizio 18:
 Process A {
     while (true) {
         print(“K”);
