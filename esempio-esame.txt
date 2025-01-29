@@ -1,1 +1,56 @@
+Esercizio 1:
+
+SemA = 0;
+SemB = 0;
+SemC = 0;
+
+Process A {
+  while (true) {
+    print(“Ado”);
+    V(SemB);
+    P(SemA);
+    print(“Sistem”);
+    V(SemC);
+    P(SemA);
+    print(“Oper”);
+    V(SemB);
+    P(SemA);
+  }
+}	
+
+Process B {
+ while (true) {
+    P(SemB);
+    print(“ro ”);
+    V(SemC);
+    P(SemB);
+    print(“ativi!!\n”);
+    V(SemA);
+   }
+}
+
+Process C {
+  while (true) {
+    P(SemC);
+    print(“i ”);
+    V(SemA);
+  }
+}
+
+Esercizio 2:
+L’algoritmo SJF(Shortest Job First) consiste nello scegliere l’ordine con cui eseguire i processi in base alla durata del loro CPU-burst, ci sono 2 tipi di algoritmi SJF: 
+-Preemptive quando all’arrivo di un processo nuovo più corto del processo corrente, lo scheduler ferma il processo corrente e lo sostituisce a quello nuovo;
+-Non preemptive quando questa cosa non è possibile. L’algoritmo SJF ha la possibilità di essere soggetto a starvation:
+se ci sono molti processi molto lunghi l’ultimo processo aspetterebbe molto tempo però prima o poi verrà eseguito (in questo caso non c’è starvation),
+se invece nella versione non preemptive vengono aggiunti di continuo un’infinità di nuovi processi più corti di quelli già presenti, allora i processi più lunghi non verranno mai eseguiti, portandoli ad essere soggetti di starvation.
+
+Esercizio 3:
+
+Esercizio 4:
+
+Esercizio 5:
+-> S1 -> F2 -> S0 -> F1 ->
+F1 richiede S1 che è allocata a F2, che richiede a sua volta S0, allocata a F1, quindi entrambi rimarranno in attesa all'infinito senza posare le spade, visto che nessuno dei due troverà la seconda spada disponibile.
+
+Esercizio 6:
 
