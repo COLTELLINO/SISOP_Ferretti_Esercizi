@@ -30,9 +30,10 @@ Process C {
 }
 
 Domanda 2:
+Sì, è possibile utilizzare la memoria virtuale attraverso la segmentazione: a differenza delle pagine i segmenti hanno un nome, sono suddivisi dal programmatore, hanno dimensione variabile e contengono informazioni omogenee, mentre le pagine hanno un indirizzo, sono suddivise in automatico, hanno dimensione fissa e possono contenere informazioni disomogenee.
 
 Domanda 3:
-Uno scheduler preemptive può sositutire il processo corrente prima della fine del suo CPU-burst, ad esempio nell'SJF preemptive quando arriva nella coda ready un processo con il prossimo burst di durata minore rispetto al tempo rimanente del burst corrente.
+Uno scheduler preemptive può sositutire il processo corrente prima della sua terminazione, ad esempio nell'SJF preemptive quando arriva nella coda ready un processo con il prossimo burst di durata minore rispetto al tempo rimanente del burst corrente; uno non preemptive aspetta che il programma termini o ceda volontariamente le risorse.
 
 Domanda 4:
 RR(4)
@@ -63,6 +64,7 @@ Domanda 5:
 12 page fault.
 
 Domanda 6:
+Gli scheduler a code multiple vengono impiegati per gestire in modo efficiente processi di tipo diverso, ad esempio usando algoritmi di scheduling diversi: una coda di processi interattivi con Round Robin e una per processi Batch con FCFS. Oppure per gestire priorità e stati dei processi in modo dinamico, spostandoli tra le code, ad esempio se un processo interattivo diventa CPU-bound lo sposto in una coda con meno priorità.
 
 Domanda 7:
 Working set: {6 7 4 5}
