@@ -1,1 +1,71 @@
+Domanda 1:
+SemA = 0;
+SemB = 0;
+SemC = 0;
+Process A {
+  while (true) {
+    print(“Mer”);
+    V(SemB);
+    P(SemA);
+    print(Christ”);
+    V(SemC);
+    P(SemA);
+  }
+}	
+
+Process B {
+  while (true) {
+    P(SemB);
+    print(“ry ”);
+    V(SemA);
+   }
+}
+
+Process C {
+  while (true) {
+    P(SemC);  
+    print(“mas!\n”);
+    V(SemA);
+  }
+}
+
+Domanda 2:
+
+Domanda 3:
+Uno scheduler preemptive può sositutire il processo corrente prima della fine del suo CPU-burst, ad esempio nell'SJF preemptive quando arriva nella coda ready un processo con il prossimo burst di durata minore rispetto al tempo rimanente del burst corrente.
+
+Domanda 4:
+RR(4)
+P1 0-4 | P2 4-8 | P3 8-12 | P1 12-16 | P2 16-20 | P3 20-24 | P1 24-28 | P2 28-32 | P1 32-36 | P2 36-38 | P1 38-42 | P1 44-46
+Ta = (22 + 24 + 16) / 3 = 20,6 ms 
+Ttr = (44 + 38 + 24) / 3 = 35,3 ms 
+
+SJF
+P3 0-4 | P2 4-12 | P3 12-16 | P2 16-22 | P1 22-34 | IO 34-36 | P1 36-46 
+Ta = (24 + 8 + 8) / 3 = 13,3 ms 
+Ttr = (46 + 22 + 16) / 3 = 28 ms 
+
+Domanda 5:
+11         pf
+11 10      pf
+11 10 5    pf 
+11 10 5 9  pf
+11 5 9 10 
+5 9 10 15  pf
+9 10 15 18 pf
+9 10 18 15 
+10 18 15 1 pf
+18 15 1 3  pf
+15 1 3 5   pf
+1 3 5 11   pf
+3 5 11 9   pf
+5 11 9 19  pf
+12 page fault.
+
+Domanda 6:
+
+Domanda 7:
+Working set: {6 7 4 5}
+
+
 
