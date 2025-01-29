@@ -45,12 +45,14 @@ se ci sono molti processi molto lunghi l’ultimo processo aspetterebbe molto te
 se invece nella versione non preemptive vengono aggiunti di continuo un’infinità di nuovi processi più corti di quelli già presenti, allora i processi più lunghi non verranno mai eseguiti, portandoli ad essere soggetti di starvation.
 
 Esercizio 3:
+Una system call è un’interfaccia che permette ai programmi e all’utente di interagire con il sistema operativo, eseguendo operazioni privilegiate che il programma non potrebbe eseguire, come la gestione di risorse, dei file e dei processi.
 
 Esercizio 4:
+La tabella dei file aperti di un processo è privata per ogni processo e contiene solo i file che quel processo ha aperto, con relativo file descriptor (FD) e un puntatore alla voce corrispondente nella tabella dei file aperti di sistema, che è unica per l'intero sistema operativo. Contiene una voce per ogni file attualmente aperto nel sistema, all’apertura di un file se il file è già aperto, viene incrementato il contatore dei riferimenti nella tabella di sistema, se il file non è aperto, viene creata una nuova voce nella Tabella dei file aperti di sistema.
 
 Esercizio 5:
 -> S1 -> F2 -> S0 -> F1 ->
 F1 richiede S1 che è allocata a F2, che richiede a sua volta S0, allocata a F1, quindi entrambi rimarranno in attesa all'infinito senza posare le spade, visto che nessuno dei due troverà la seconda spada disponibile.
 
 Esercizio 6:
-
+No, non è possibile, perché: Il binding degli indirizzi è il momento in cui gli indirizzi simbolici delle variabili e delle istruzioni vengono tradotti in indirizzi fisici. Se questo avviene durante la compilazione, significa che: Il codice compilato contiene indirizzi di memoria assoluti, cioè già assegnati a posizioni specifiche della RAM. Quando il programma viene caricato in memoria, deve essere eseguito esattamente in quegli indirizzi. Non è possibile caricare più istanze del processo contemporaneamente, perché avrebbero tutti gli stessi indirizzi fisici, portando a conflitti nella memoria.
